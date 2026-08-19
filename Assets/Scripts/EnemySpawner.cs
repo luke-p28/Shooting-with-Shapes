@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = System.Random;
 using TrueRandom = UnityEngine.Random;
@@ -7,25 +9,39 @@ public class EnemySpawner : MonoBehaviour
 {
     public float spawnTimer = 1;
     float spawnTime;
-    public GameObject[] enemies;
+    public EnemyTypePrefabs[] enemies;
     public int enemyLimit;
     int offset;
     // Random random;
     Random shapeTypeRandom;
+    Random enemyTypeRandom;
+    [Serializable]
+    public class EnemyTypePrefabs
+    {
+        public GameObject[] prefabs = new GameObject[6];
+        public GameObject this[int index]
+        {
+            get
+            {
+                return prefabs[index];
+            }
+        }
+    }
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        offset = Mathf.FloorToInt(TrueRandom.Range(0, enemies.Length - 1));
+        offset = Mathf.FloorToInt(TrueRandom.Range(0, 5));
         shapeTypeRandom = new(LevelManager.levelNum);
         // random = new(LevelManager.levelNum);
         Enemy.random = new(LevelManager.levelNum);
         Enemy.speedRandom = new(LevelManager.levelNum);
         Enemy.offset = TrueRandom.value * 360;
         Enemy.isFirst = true;
-        Explosion.enemyKilled = false;
-        Explosion.enemiesKilled = 0;
+        // Explosion.enemyKilled = false;
+        Enemy.enemiesKilled = 0;
+        enemyTypeRandom = new(LevelManager.levelNum);
     }
 
     // Update is called once per frame
@@ -38,11 +54,13 @@ public class EnemySpawner : MonoBehaviour
             if (currentEnemies.Length < enemyLimit)
             {
                 if (LevelManager.levelNum == -1){
-                    Instantiate(enemies[3]);
+                    Instantiate(enemies[0][3]);
                     Tutorial.phase = 2;
                 }
-                else
-                    Instantiate(enemies[(shapeTypeRandom.Next(0,enemies.Length) + offset)%enemies.Length]);
+                else{
+                    int enemyIndex = LevelManager.GetRandomEnemyIndex(enemyTypeRandom);
+                    Instantiate(enemies[enemyIndex][(shapeTypeRandom.Next(0,6) + offset)%6]);
+                }
                 // GetCurrentShapes(out var inPlay, out var outOfPlay);
                 // if(inPlay.Count == 0 && Explosion.enemyKilled)
                 // {
@@ -81,7 +99,7 @@ public class EnemySpawner : MonoBehaviour
         inPlay = new();
         outOfPlay = new();
         List<bool> shapesInPlay = new();
-        for (int i = 0; i < enemies.Length; i++)
+        for (int i = 0; i < 6; i++)
         {
             shapesInPlay.Add(false);
         }

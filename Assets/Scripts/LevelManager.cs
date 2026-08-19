@@ -1,4 +1,5 @@
 using UnityEngine;
+using Random = System.Random;
 
 public class LevelManager
 {
@@ -154,4 +155,16 @@ public class LevelManager
         {4,1},
         {4,1},
     };
+
+    public static int GetRandomEnemyIndex(Random random)
+    {
+        int weightsTotal = 0;
+        for (int i = 0; i < weights.GetLength(1); i++) weightsTotal += weights[levelNum - 1, i];
+        int igb = random.Next(weightsTotal + 1);
+        for (int i = 0; true; i++)
+        {
+            igb -= weights[levelNum - 1, i];
+            if (igb <= 0) return i;
+        }
+    }
 }

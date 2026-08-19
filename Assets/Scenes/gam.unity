@@ -150,12 +150,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnTimer: 3
   enemies:
-  - {fileID: 440193494345316229, guid: 4866c192f91eced4a8fc08d87e02e54f, type: 3}
-  - {fileID: 9126710884183357775, guid: a54ecc3a769d2694080d9fe3752fd581, type: 3}
-  - {fileID: 6332277445626977031, guid: d685187306d5b8e44b815caf6be15529, type: 3}
-  - {fileID: 7729858243286319062, guid: 5df93fb0e2e8eb74eac1fe6f0160f621, type: 3}
-  - {fileID: 5723533129207879595, guid: c78090d774b27dc4d92da3d76c41c018, type: 3}
-  - {fileID: 1887634325697059061, guid: 6463c365830e6ce41bb6b6bf13cea4ec, type: 3}
+  - prefabs:
+    - {fileID: 440193494345316229, guid: 4866c192f91eced4a8fc08d87e02e54f, type: 3}
+    - {fileID: 9126710884183357775, guid: a54ecc3a769d2694080d9fe3752fd581, type: 3}
+    - {fileID: 6332277445626977031, guid: d685187306d5b8e44b815caf6be15529, type: 3}
+    - {fileID: 7729858243286319062, guid: 5df93fb0e2e8eb74eac1fe6f0160f621, type: 3}
+    - {fileID: 5723533129207879595, guid: c78090d774b27dc4d92da3d76c41c018, type: 3}
+    - {fileID: 1887634325697059061, guid: 6463c365830e6ce41bb6b6bf13cea4ec, type: 3}
+  - prefabs:
+    - {fileID: 9126710884183357775, guid: ae70874e946250341aee8405d24fcfdb, type: 3}
+    - {fileID: 9126710884183357775, guid: c0854e9894d66aa479c3185da217d422, type: 3}
+    - {fileID: 9126710884183357775, guid: 2634c864a90ccae49b242d3d6461c288, type: 3}
+    - {fileID: 9126710884183357775, guid: 2ac63dea4d8cae3408f56050c511fc9a, type: 3}
+    - {fileID: 9126710884183357775, guid: 461d2fcb091b4934d93a0d2311fe31d8, type: 3}
+    - {fileID: 9126710884183357775, guid: 1698e41c1d4e7ec4c8c2a27973f30e01, type: 3}
   enemyLimit: 10
 --- !u!4 &96487407
 Transform:
@@ -2830,7 +2838,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1051968208

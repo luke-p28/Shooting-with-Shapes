@@ -13,10 +13,14 @@ public class Enemy : MonoBehaviour
     public static float offset;
     public static bool isFirst;
     static float lastAngle;
+    int enemyCount;
+    public static int enemiesKilled = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected virtual void Start()
     {
+        if (LevelManager.levelNum != -1)
+            enemyCount = LevelManager.enemyCounts[LevelManager.levelNum - 1];
         float nextDouble = (float)random.NextDouble();
         print("Next dobule: " + nextDouble);
         float angle;
@@ -67,7 +71,7 @@ public class Enemy : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         if (LevelManager.levelNum != -1 || Tutorial.phase == 2)
             transform.Translate(movementSpeed * Time.deltaTime * Vector3.up);
@@ -75,13 +79,32 @@ public class Enemy : MonoBehaviour
             Tutorial.phase = 3;
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Stage"))
         {
             Destroy(gameObject);
             print("enemy hit: " + gameObject.name);
             LivesManager.DecrementLives();
+        }
+    }
+
+    public virtual void ExplosionHit(ShapesManager.ShapeType explosionType)
+    {
+        if (shapeType == explosionType){
+            Destroy(gameObject);
+            if (LevelManager.levelNum == -1)
+            {
+                Tutorial.phase = 6;
+            } 
+            else
+            {
+                ++enemiesKilled;
+                if(enemiesKilled >= enemyCount)
+                {
+                    WinPanel.Win(true);
+                }
+            }
         }
     }
 }

@@ -9,15 +9,11 @@ public class Explosion : MonoBehaviour
     float explosionTime;
     public float explosionDuration;
     public ShapesManager.ShapeType shape;
-    public static ShapesManager.ShapeType lastKilledEnemy;
-    public static bool enemyKilled;
-    public static int enemiesKilled = 0;
-    int enemyCount;
+    // public static ShapesManager.ShapeType lastKilledEnemy;
+    // public static bool enemyKilled;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (LevelManager.levelNum != -1)
-            enemyCount = LevelManager.enemyCounts[LevelManager.levelNum - 1];
         targetScale = transform.localScale;
         targetProportions = targetScale.normalized;
         transform.localScale = targetProportions * 0.01f;
@@ -49,25 +45,7 @@ public class Explosion : MonoBehaviour
     {
         if (collision.TryGetComponent(out Enemy enemyComp))
         {
-            if (enemyComp.shapeType == shape){
-                if(collision.gameObject.TryGetComponent(out Enemy component))
-                {
-                    enemyKilled = true;
-                    lastKilledEnemy = component.shapeType;
-                }
-                Destroy(collision.gameObject);
-                if (LevelManager.levelNum == -1)
-                {
-                    Tutorial.phase = 6;
-                } else
-                {
-                    ++enemiesKilled;
-                    if(enemiesKilled >= enemyCount)
-                    {
-                        WinPanel.Win(true);
-                    }
-                }
-            }
+            enemyComp.ExplosionHit(shape);
         }
     }
 }
