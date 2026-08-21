@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3fe484b11a0432d48a8c0a408071ab21
+guid: 4a3e25edeb5a4ca4eb0b24a632f07949
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Xs_0
+      name: HardyEnemy_0
       rect:
         serializedVersion: 2
-        x: 18
-        y: 27
-        width: 888
-        height: 887
+        x: 24
+        y: 18
+        width: 1099
+        height: 1066
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -125,20 +125,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3333264cba032fd4d90907cbb267edc8
-      internalID: 1070924150
+      spriteID: 6e7a0e5107624124596d75291bca530e
+      internalID: 1660377734
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Xs_1
+      name: HardyEnemy_1
       rect:
         serializedVersion: 2
-        x: 1470
-        y: 27
-        width: 889
-        height: 887
+        x: 1422
+        y: 18
+        width: 1098
+        height: 1066
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -147,8 +147,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 852692d26b13d2440bcfe3a831959135
-      internalID: -850195427
+      spriteID: 7648232e71e1cc24298adf21b2a0d0b8
+      internalID: 695790717
       vertices: []
       indices: 
       edges: []
@@ -157,7 +157,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 33d0ec95444ba434b829564630e99f94
+    spriteID: 6257574ead860174eab3fcda50f015fd
     internalID: 0
     vertices: []
     indices: 
@@ -169,8 +169,8 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Xs_0: 1070924150
-      Xs_1: -850195427
+      HardyEnemy_0: 1660377734
+      HardyEnemy_1: 695790717
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
