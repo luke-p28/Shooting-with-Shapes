@@ -38,20 +38,12 @@ public class Ammo : MonoBehaviour
             {
                 if (hasAmmo)
                 {
+                    Instantiate(ShapesManager.ammosStatic[(int)lastShapeType], lastPosition, Quaternion.identity);
                     Destroy(collectedShapeObject);
-                }
-                if (lastPosition != Vector3.zero)
-                {
-                    ShapesManager.ShapeType newShapeType;
-                    newShapeType = lastShapeType;
-                    lastShapeType = shapeType;
-                    Instantiate(ShapesManager.ammosStatic[(int)newShapeType], lastPosition, Quaternion.identity);
-                } else
-                {
-                    lastShapeType = shapeType;
                 }
                 if (LevelManager.levelNum == -1 && Tutorial.phase == 3)
                     Tutorial.phase = 4;
+                lastShapeType = shapeType;
                 lastPosition = transform.position;
                 // print("colledcted");
                 collectible = false;

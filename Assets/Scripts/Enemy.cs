@@ -5,7 +5,7 @@ using TrueRandom = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
 {
-    float movementSpeed;
+    protected float movementSpeed;
     public ShapesManager.ShapeType shapeType;
     public float startingDistance;
     public static Random random;
@@ -89,6 +89,16 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    protected void EnemyKilled()
+    {
+        if (gameObject) Destroy(gameObject);
+        ++enemiesKilled;
+        if(enemiesKilled >= enemyCount)
+        {
+            WinPanel.Win(true);
+        }
+    }
+
     public virtual void ExplosionHit(ShapesManager.ShapeType explosionType)
     {
         if (shapeType == explosionType){
@@ -97,14 +107,7 @@ public class Enemy : MonoBehaviour
             {
                 Tutorial.phase = 6;
             } 
-            else
-            {
-                ++enemiesKilled;
-                if(enemiesKilled >= enemyCount)
-                {
-                    WinPanel.Win(true);
-                }
-            }
+            else EnemyKilled();
         }
     }
 }

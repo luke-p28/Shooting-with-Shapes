@@ -33,15 +33,15 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         offset = Mathf.FloorToInt(TrueRandom.Range(0, 5));
-        shapeTypeRandom = new(LevelManager.levelNum);
+        shapeTypeRandom = new(LevelManager.levelNum+1);
         // random = new(LevelManager.levelNum);
-        Enemy.random = new(LevelManager.levelNum);
-        Enemy.speedRandom = new(LevelManager.levelNum);
+        Enemy.random = new(LevelManager.levelNum+2);
+        Enemy.speedRandom = new(LevelManager.levelNum+3);
         Enemy.offset = TrueRandom.value * 360;
         Enemy.isFirst = true;
         // Explosion.enemyKilled = false;
         Enemy.enemiesKilled = 0;
-        enemyTypeRandom = new(LevelManager.levelNum);
+        enemyTypeRandom = new(LevelManager.levelNum+4);
     }
 
     // Update is called once per frame

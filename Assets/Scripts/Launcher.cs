@@ -22,6 +22,7 @@ public class Launcher : MonoBehaviour
         {
             // print(Ammo.collectedShapeObject.name);
             Destroy(Ammo.collectedShapeObject);
+            Instantiate(ShapesManager.ammosStatic[(int)Ammo.lastShapeType], Ammo.lastPosition, Quaternion.identity);
             // print(Ammo.collectedShapeObject.name);
             Ammo.hasAmmo = false;
             Instantiate(ShapesManager.previewsStatic[(int)Ammo.collectedShapeType]);

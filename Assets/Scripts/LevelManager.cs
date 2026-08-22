@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using Random = System.Random;
 
@@ -130,41 +131,42 @@ public class LevelManager
 
     public static int[,] weights =
     {
-        {1,0},
-        {1,0},
-        {1,0},
-        {1,0},
-        {1,0},
-        {4,1},
-        {4,1},
-        {4,1},
-        {4,1},
-        {4,1},
-        {4,1},
-        {4,1},
-        {4,1},
-        {4,1},
-        {4,1},
-        {4,1},
-        {4,1},
-        {4,1},
-        {4,1},
-        {4,1},
-        {4,1},
-        {4,1},
-        {4,1},
-        {4,1},
+        {1,0,0},
+        {1,0,0},
+        {1,0,0},
+        {1,0,0},
+        {1,0,0},
+        {6,1,0},
+        {5,1,0},
+        {4,1,0},
+        {4,1,0},
+        {4,1,0},
+        {4,1,0},
+        {8,1,1},
+        {7,1,1},
+        {7,1,1},
+        {7,1,1},
+        {7,1,1},
+        {7,1,1},
+        {7,1,1},
+        {7,1,1},
+        {7,1,1},
+        {7,1,1},
+        {7,1,1},
+        {7,1,1},
+        {7,1,1},
     };
 
     public static int GetRandomEnemyIndex(Random random)
     {
-        int weightsTotal = 0;
-        for (int i = 0; i < weights.GetLength(1); i++) weightsTotal += weights[levelNum - 1, i];
-        int igb = random.Next(weightsTotal + 1);
-        for (int i = 0; true; i++)
+        List<int> enemyIndicies = new();
+        for (int i = 0; i < weights.GetLength(1); i++)
         {
-            igb -= weights[levelNum - 1, i];
-            if (igb <= 0) return i;
+            for (int j = 0; j < weights[levelNum - 1, i]; j++)
+            {
+                enemyIndicies.Add(i);
+            }
         }
+        return enemyIndicies[random.Next(enemyIndicies.Count)];
     }
 }

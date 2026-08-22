@@ -18,8 +18,8 @@ public class MakeStars : MonoBehaviour
         {
             Vector3 bottomLeft = Camera.main.ScreenToWorldPoint(Vector3.zero) + Vector3.left + Vector3.down;
             Vector3 upperRight = Camera.main.ScreenToWorldPoint(new(Camera.main.pixelWidth + 10,Camera.main.pixelHeight,0));
-            start = bottomLeft.x;
-            end = upperRight.x;
+            end = bottomLeft.x;
+            start = upperRight.x;
             upper = upperRight.y;
             lower = bottomLeft.y;
             transform.position = Vector3.zero + Vector3.forward*2 + Vector3.right*start;
@@ -40,8 +40,8 @@ public class MakeStars : MonoBehaviour
 
     void FixedUpdate()
     {
-        transform.Translate(Vector3.right * speed);
-        if (transform.position.x > end)
+        transform.Translate(Vector3.left * speed);
+        if (transform.position.x < end)
             Destroy(gameObject);
     }
 }
