@@ -43,7 +43,7 @@ public class Explosion : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent(out Enemy enemyComp))
+        if (collision.TryGetComponent(out Enemy enemyComp) && !enemyComp.invincible)
         {
             enemyComp.ExplosionHit(shape);
         }

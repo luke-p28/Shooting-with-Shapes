@@ -5,7 +5,10 @@ using TrueRandom = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
 {
-    protected float movementSpeed;
+    internal float movementSpeed;
+    internal float strafeSpeed;
+    internal bool invincible = true;
+    public bool randomStart = true;
     public ShapesManager.ShapeType shapeType;
     public float startingDistance;
     public static Random random;
@@ -18,6 +21,19 @@ public class Enemy : MonoBehaviour
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()
+    {
+        if (randomStart){
+            RandomizeStart();
+        }
+        Invoke(nameof(BecomeMortal), 0.5f);
+    }
+
+    void BecomeMortal()
+    {
+        invincible = false;
+    }
+
+    void RandomizeStart()
     {
         if (LevelManager.levelNum != -1)
             enemyCount = LevelManager.enemyCounts[LevelManager.levelNum - 1];
@@ -52,14 +68,6 @@ public class Enemy : MonoBehaviour
         }
         transform.position = Quaternion.Euler(0, 0, angle) * Vector2.up * startingDistance;
         // print("creating with offset: " + offset);
-        transform.rotation = Quaternion.FromToRotation(transform.up, -transform.position.normalized);
-        if (Mathf.Abs(transform.rotation.eulerAngles.x) == 180 || transform.rotation.eulerAngles == new Vector3(0,180,180))
-        {
-            transform.rotation = Quaternion.Euler(0,0,180);
-        } else
-        {
-            // print("r0t: " + transform.rotation.eulerAngles);
-        }
         transform.position += TrueRandom.value * 10 * Vector3.forward;
         lastAngle = angle;
         print("Final angle: " + lastAngle);
@@ -73,8 +81,14 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
+        transform.rotation = Quaternion.FromToRotation(Vector3.up, -(Vector2)transform.position.normalized);
+        if (Mathf.Abs(transform.rotation.eulerAngles.x) == 180 || transform.rotation.eulerAngles == new Vector3(0,180,180))
+        {
+            transform.rotation = Quaternion.Euler(0,0,180);
+        }
         if (LevelManager.levelNum != -1 || Tutorial.phase == 2)
             transform.Translate(movementSpeed * Time.deltaTime * Vector3.up);
+        transform.Translate(strafeSpeed * Time.deltaTime * Vector3.right);
         if (Tutorial.phase == 2 && ((Vector2)transform.position).magnitude < 7)
             Tutorial.phase = 3;
     }

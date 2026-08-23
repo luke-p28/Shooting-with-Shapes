@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cebc33936191efb4699ce0e97d5367cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnTimer: 3
+  spawnTimer: 3.5
   enemies:
   - prefabs:
     - {fileID: 440193494345316229, guid: 4866c192f91eced4a8fc08d87e02e54f, type: 3}
@@ -171,6 +171,13 @@ MonoBehaviour:
     - {fileID: 9126710884183357775, guid: 8b7e44e408bbc634e881aaba943909bb, type: 3}
     - {fileID: 9126710884183357775, guid: 636a53a4edf015a4fa31482b552ffd91, type: 3}
     - {fileID: 9126710884183357775, guid: 0a385f03dfd14dd47bb22d84c01fb36e, type: 3}
+  - prefabs:
+    - {fileID: 440193494345316229, guid: ae6194bd1b6fccc45b8f9d90eeac2c2c, type: 3}
+    - {fileID: 440193494345316229, guid: 8157d88fa1a246d44961a6d11017e839, type: 3}
+    - {fileID: 440193494345316229, guid: 6ed4bcd3daf3e774db15434224d6fbff, type: 3}
+    - {fileID: 440193494345316229, guid: 7fd213f0d4d0d0b42a4dab0fdf6c4e26, type: 3}
+    - {fileID: 440193494345316229, guid: cd0fd1d3f490b0b458637c071ded87b9, type: 3}
+    - {fileID: 440193494345316229, guid: 20b599f2e5ed55240a2f7d295d06bf4b, type: 3}
   enemyLimit: 10
 --- !u!4 &96487407
 Transform:
@@ -2857,7 +2864,7 @@ Transform:
   m_GameObject: {fileID: 1051968205}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.01, y: -4.73, z: 2}
+  m_LocalPosition: {x: -5.01, y: -4.73, z: 14.56}
   m_LocalScale: {x: 0.1676, y: 0.1676, z: 0.1676}
   m_ConstrainProportionsScale: 0
   m_Children: []
