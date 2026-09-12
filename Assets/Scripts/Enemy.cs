@@ -17,11 +17,12 @@ public class Enemy : MonoBehaviour
     public static bool isFirst;
     static float lastAngle;
     int enemyCount;
-    public static int enemiesKilled = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()
     {
+        if (LevelManager.levelNum != -1)
+            enemyCount = LevelManager.enemyCounts[LevelManager.levelNum - 1];
         if (randomStart){
             RandomizeStart();
         }
@@ -35,10 +36,8 @@ public class Enemy : MonoBehaviour
 
     void RandomizeStart()
     {
-        if (LevelManager.levelNum != -1)
-            enemyCount = LevelManager.enemyCounts[LevelManager.levelNum - 1];
         float nextDouble = (float)random.NextDouble();
-        print("Next dobule: " + nextDouble);
+        // print("Next dobule: " + nextDouble);
         float angle;
         if (LevelManager.levelNum == -1)
         {
@@ -46,22 +45,22 @@ public class Enemy : MonoBehaviour
         } else
         {
             angle =  (nextDouble * 360 + offset) % 360;
-            print("offset:" + offset);
-            print("angl: " + angle);
+            // print("offset:" + offset);
+            // print("angl: " + angle);
             if (!isFirst){
                 float difference = angle - lastAngle;
                 if (Mathf.Abs(difference) < 90)
                 {
-                    print("smol angl");
+                    // print("smol angl");
                     angle = lastAngle + Mathf.Clamp(Mathf.Abs(difference), 0, 30) * Mathf.Sign(difference);
                 } else if(Mathf.Abs(difference) > 270)
                 {
-                    print("smol big angl");
-                    print("diff: " + difference);
+                    // print("smol big angl");
+                    // print("diff: " + difference);
                     angle = lastAngle + Mathf.Clamp(Mathf.Abs(difference), 330, 360) * Mathf.Sign(difference);
                 } else
                 {
-                    print("biig angl");
+                    // print("biig angl");
                     angle = lastAngle + Mathf.Clamp(Mathf.Abs(difference), 135, 225) * Mathf.Sign(difference);
                 }
             } else isFirst = false;
@@ -70,7 +69,7 @@ public class Enemy : MonoBehaviour
         // print("creating with offset: " + offset);
         transform.position += TrueRandom.value * 10 * Vector3.forward;
         lastAngle = angle;
-        print("Final angle: " + lastAngle);
+        // print("Final angle: " + lastAngle);
 
         if (LevelManager.levelNum == -1)
             movementSpeed = 0.3f;
@@ -106,8 +105,8 @@ public class Enemy : MonoBehaviour
     protected void EnemyKilled()
     {
         if (gameObject) Destroy(gameObject);
-        ++enemiesKilled;
-        if(enemiesKilled >= enemyCount)
+        // ++enemiesKilled;
+        if(EnemySpawner.doneSpawning && GameObject.FindGameObjectsWithTag("Enemy").Length == 1)
         {
             WinPanel.Win(true);
         }

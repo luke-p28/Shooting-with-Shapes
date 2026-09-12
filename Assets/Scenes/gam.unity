@@ -178,6 +178,13 @@ MonoBehaviour:
     - {fileID: 440193494345316229, guid: 7fd213f0d4d0d0b42a4dab0fdf6c4e26, type: 3}
     - {fileID: 440193494345316229, guid: cd0fd1d3f490b0b458637c071ded87b9, type: 3}
     - {fileID: 440193494345316229, guid: 20b599f2e5ed55240a2f7d295d06bf4b, type: 3}
+  - prefabs:
+    - {fileID: 440193494345316229, guid: 84d9338f14f504c46bce4ffdbdd4cda6, type: 3}
+    - {fileID: 440193494345316229, guid: db39554e57b45694da7461c4dc0a20e6, type: 3}
+    - {fileID: 440193494345316229, guid: 272a19e9f4e840449aef5cfbea69e3a8, type: 3}
+    - {fileID: 440193494345316229, guid: 7d7e0583d973fdf4f80e688a3c506736, type: 3}
+    - {fileID: 440193494345316229, guid: ecbd55b7807a23f4c9e8adfa1683c0c5, type: 3}
+    - {fileID: 440193494345316229, guid: ba90dbe992dc51243aa634dbaf260323, type: 3}
   enemyLimit: 10
 --- !u!4 &96487407
 Transform:

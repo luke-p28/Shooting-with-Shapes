@@ -21,7 +21,7 @@ public class LivesManager : MonoBehaviour
     public static void DecrementLives()
     {
         if(inGame){
-            print("Lives: " + lives);
+            // print("Lives: " + lives);
             if (lives == 0)
                 return;
             --lives;

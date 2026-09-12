@@ -56,11 +56,11 @@ public class PlayerMovement : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        print(collision.otherCollider.gameObject.name);
+        // print(collision.otherCollider.gameObject.name);
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
-        print(collision.gameObject.name);
+        // print(collision.gameObject.name);
     }
     void OnTriggerExit2D(Collider2D collision)
     {
