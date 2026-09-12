@@ -42,6 +42,7 @@ public class CutsceneMaker : MonoBehaviour
             ++currentMovement;
             if (currentMovement == actionOrder.Length)
             {
+                LevelManager.levelNum = -1;
                 SceneManager.LoadScene(nextScene);
             } else
             {

@@ -52,10 +52,10 @@ public class EnemySpawner : MonoBehaviour
     void Update()
     {
         spawnTime += Time.deltaTime;
-        if (spawnTime > spawnTimer && (LevelManager.levelNum != -1 || Tutorial.phase == 1) && enemiesSpawned < LevelManager.enemyCounts[LevelManager.levelNum - 1])
+        if (spawnTime > spawnTimer && (LevelManager.levelNum != -1 || Tutorial.phase == 1) && (LevelManager.levelNum == -1 || enemiesSpawned < LevelManager.enemyCounts[LevelManager.levelNum - 1]))
         {
             ++enemiesSpawned;
-            if (enemiesSpawned == LevelManager.enemyCounts[LevelManager.levelNum - 1]) doneSpawning = true;
+            if (LevelManager.levelNum != -1 && enemiesSpawned == LevelManager.enemyCounts[LevelManager.levelNum - 1]) doneSpawning = true;
             GameObject[] currentEnemies = GameObject.FindGameObjectsWithTag("Enemy");
             if (currentEnemies.Length < enemyLimit)
             {
