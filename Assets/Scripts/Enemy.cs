@@ -96,7 +96,7 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Stage"))
         {
-            Destroy(gameObject);
+            EnemyKilled();
             print("enemy hit: " + gameObject.name);
             LivesManager.DecrementLives();
         }
@@ -108,7 +108,8 @@ public class Enemy : MonoBehaviour
         // ++enemiesKilled;
         if(EnemySpawner.doneSpawning && GameObject.FindGameObjectsWithTag("Enemy").Length == 1)
         {
-            WinPanel.Win(true);
+            print("should win");
+            GameObject.FindWithTag("Player").GetComponent<PlayerMovement>().Invoke(nameof(PlayerMovement.Win), 1);
         }
     }
 

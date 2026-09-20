@@ -54,6 +54,12 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void Win()
+    {
+        print("winning");
+        WinPanel.Win(true);
+    }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         // print(collision.otherCollider.gameObject.name);

@@ -55,6 +55,8 @@ public class EnemySpawner : MonoBehaviour
         if (spawnTime > spawnTimer && (LevelManager.levelNum != -1 || Tutorial.phase == 1) && (LevelManager.levelNum == -1 || enemiesSpawned < LevelManager.enemyCounts[LevelManager.levelNum - 1]))
         {
             ++enemiesSpawned;
+            ProgressBar.progress = ((float)enemiesSpawned)/LevelManager.enemyCounts[LevelManager.levelNum - 1];
+            print("Progress: " + ProgressBar.progress);
             if (LevelManager.levelNum != -1 && enemiesSpawned == LevelManager.enemyCounts[LevelManager.levelNum - 1]) doneSpawning = true;
             GameObject[] currentEnemies = GameObject.FindGameObjectsWithTag("Enemy");
             if (currentEnemies.Length < enemyLimit)
