@@ -34,6 +34,7 @@ public class EnemySpawner : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        ProgressBar.progress = 0;
         doneSpawning = false;
         BossEnemy.enemies = enemies[3];
         offset = Mathf.FloorToInt(TrueRandom.Range(0, 5));
@@ -56,7 +57,7 @@ public class EnemySpawner : MonoBehaviour
         {
             ++enemiesSpawned;
             ProgressBar.progress = ((float)enemiesSpawned)/LevelManager.enemyCounts[LevelManager.levelNum - 1];
-            print("Progress: " + ProgressBar.progress);
+            // print("Progress: " + ProgressBar.progress);
             if (LevelManager.levelNum != -1 && enemiesSpawned == LevelManager.enemyCounts[LevelManager.levelNum - 1]) doneSpawning = true;
             GameObject[] currentEnemies = GameObject.FindGameObjectsWithTag("Enemy");
             if (currentEnemies.Length < enemyLimit)
