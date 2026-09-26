@@ -24,7 +24,7 @@ public class Tutorial : MonoBehaviour
 
     void LevelSelect()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(6);
     }
 
     void Update()

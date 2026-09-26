@@ -11,9 +11,15 @@ public class PlayMusic : MonoBehaviour
     static int currentTrack = 0;
     static int nextTrack;
     static float fadeTimer;
+    static bool firstPlayer = true;
+    static float loopTimer;
+    static float loopTime = 1;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if (!firstPlayer) Destroy(gameObject);
+        else firstPlayer = false;
+        loopTimer = loopTime;
         fadeTimer = -fadeTime;
         player = GetComponent<AudioSource>();
         player.PlayOneShot(tracks[0]);
@@ -31,7 +37,9 @@ public class PlayMusic : MonoBehaviour
             } else if (currentTrack != nextTrack)
             {
                 player.Stop();
+                print("stopped");
                 player.PlayOneShot(tracks[nextTrack]);
+                print("playing");
                 currentTrack = nextTrack;
             } else
             {
@@ -40,14 +48,21 @@ public class PlayMusic : MonoBehaviour
             fadeTimer -= Time.deltaTime;
         } else if (!player.isPlaying)
         {
-            if (currentTrack == 1 || currentTrack == 2 || currentTrack == 3)
+            if (loopTimer > 0)
             {
-                nextTrack = (currentTrack % 3) + 1;
-                currentTrack = nextTrack;
-                player.PlayOneShot(tracks[nextTrack]);
+                loopTimer -= Time.deltaTime;
             } else
             {
-                player.PlayOneShot(tracks[currentTrack]);
+                if (currentTrack == 1 || currentTrack == 2 || currentTrack == 3)
+                {
+                    nextTrack = (currentTrack % 3) + 1;
+                    currentTrack = nextTrack;
+                    player.PlayOneShot(tracks[nextTrack]);
+                } else
+                {
+                    player.PlayOneShot(tracks[currentTrack]);
+                }
+                loopTimer = loopTime;
             }
         } else
         {

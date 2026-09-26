@@ -3,6 +3,10 @@ using UnityEngine;
 public class HardyEnemy : Enemy
 {
     public GameObject secondShapeObj;
+    protected override int livesLost()
+    {
+        return 2;
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected override void Start()
     {

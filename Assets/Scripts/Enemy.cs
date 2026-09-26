@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
     public static bool isFirst;
     static float lastAngle;
     int enemyCount;
+    internal float invincibleTime = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()
@@ -26,7 +27,7 @@ public class Enemy : MonoBehaviour
         if (randomStart){
             RandomizeStart();
         }
-        Invoke(nameof(BecomeMortal), 0.5f);
+        Invoke(nameof(BecomeMortal), invincibleTime);
     }
 
     void BecomeMortal()
@@ -49,11 +50,11 @@ public class Enemy : MonoBehaviour
             // print("angl: " + angle);
             if (!isFirst){
                 float difference = angle - lastAngle;
-                if (Mathf.Abs(difference) < 90)
+                if (Mathf.Abs(difference) < 120)
                 {
                     // print("smol angl");
                     angle = lastAngle + Mathf.Clamp(Mathf.Abs(difference), 0, 30) * Mathf.Sign(difference);
-                } else if(Mathf.Abs(difference) > 270)
+                } else if(Mathf.Abs(difference) > 240)
                 {
                     // print("smol big angl");
                     // print("diff: " + difference);
@@ -74,7 +75,8 @@ public class Enemy : MonoBehaviour
         if (LevelManager.levelNum == -1)
             movementSpeed = 0.3f;
         else
-            movementSpeed = LevelManager.speedMins[LevelManager.levelNum-1] + ((float)speedRandom.NextDouble())*(LevelManager.speedMaxes[LevelManager.levelNum-1] - LevelManager.speedMins[LevelManager.levelNum-1]);
+            movementSpeed = LevelManager.GetRandomSpeed(speedRandom);
+        print("movement speed: " + movementSpeed);
     }
 
     // Update is called once per frame
@@ -92,13 +94,14 @@ public class Enemy : MonoBehaviour
             Tutorial.phase = 3;
     }
 
-    protected virtual void OnTriggerEnter2D(Collider2D collision)
+    protected virtual int livesLost() {return 1;}
+    void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Stage"))
         {
             EnemyKilled();
             print("enemy hit: " + gameObject.name);
-            LivesManager.DecrementLives();
+            for(int i = 0; i < livesLost(); ++i){LivesManager.DecrementLives();}
         }
     }
 

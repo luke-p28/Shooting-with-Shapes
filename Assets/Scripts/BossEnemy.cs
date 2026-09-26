@@ -3,6 +3,10 @@ using UnityEngine;
 public class BossEnemy : Enemy
 {
     public static EnemySpawner.EnemyTypePrefabs enemies;
+    protected override int livesLost()
+    {
+        return 3;
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected override void Start()
     {

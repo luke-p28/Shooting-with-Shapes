@@ -73,8 +73,8 @@ public class PlayerMovement : MonoBehaviour
         if(collision.gameObject.CompareTag("Stage"))
         {
             LivesManager.DecrementLives();
-            gameObject.transform.position = Vector3.zero;
-            print("left platform");
+            gameObject.transform.position = Vector3.back;
+            // print("left platform");
         }
         
     }

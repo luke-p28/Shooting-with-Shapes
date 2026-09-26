@@ -24,9 +24,12 @@ public class WinPanel : MonoBehaviour
     public static void Win(bool updateLevel)
     {
         LivesManager.inGame = false;
-        print("winning");
-        if (updateLevel)
+        LevelManager.WinRate *= 2.0f/3;
+        // print("winning");
+        if (updateLevel){
             winObj.SetActive(true);
+            LevelManager.WinRate += 1.0f/3;
+        }
         else
             loseObj.SetActive(true);
         Time.timeScale = 0;
@@ -54,5 +57,11 @@ public class WinPanel : MonoBehaviour
     {
         Time.timeScale = 1;
         SceneManager.LoadScene(3);
+    }
+
+    public void EnemyReference()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(6);
     }
 }

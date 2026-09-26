@@ -18,6 +18,17 @@ public class LevelManager
             return PlayerPrefs.GetInt("LevelUnlocked", 1);
         }
     }
+    public static float WinRate
+    {
+        set
+        {
+            PlayerPrefs.SetFloat("WinRate", value);
+        }
+        get
+        {
+            return PlayerPrefs.GetFloat("WinRate", 0.5f);
+        }
+    }
     public static int[] enemyCounts =
     {
         10,
@@ -73,7 +84,7 @@ public class LevelManager
 //         0.5f,
 // };
 
-    public static float[] speedMins =
+    readonly static float[] speedMins =
     {
         0.3f,
         0.3f,
@@ -101,7 +112,7 @@ public class LevelManager
         0.55f,
     };
 
-    public static float[] speedMaxes =
+    readonly static float[] speedMaxes =
     {
         0.35f,
         0.35f,
@@ -168,5 +179,27 @@ public class LevelManager
             }
         }
         return enemyIndicies[random.Next(enemyIndicies.Count)];
+    }
+
+    public static float SpeedModifier()
+    {
+        if (WinRate > 0.75f)
+        {
+            return 0.1f;
+        } 
+        else if (WinRate > 0.4f)
+        {
+            return 0;
+        } else if (WinRate > 0.3f)
+        {
+            return -0.1f;
+        } else
+        {
+            return -0.15f;
+        }
+    }
+
+    public static float GetRandomSpeed(Random random){
+        return speedMins[levelNum - 1] + ((float)random.NextDouble())*(speedMaxes[levelNum - 1] - speedMins[levelNum - 1]) + SpeedModifier();
     }
 }

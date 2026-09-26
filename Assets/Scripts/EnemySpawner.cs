@@ -35,6 +35,15 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         ProgressBar.progress = 0;
+        if (LevelManager.levelNum == -1)
+        {
+            Destroy(ProgressBar.gameObject);
+        } else
+        {
+            print("Win rate: " + LevelManager.WinRate);
+            spawnTimer -= LevelManager.SpeedModifier()*5;
+            print("Spawn timer: " + spawnTimer);
+        }
         doneSpawning = false;
         BossEnemy.enemies = enemies[3];
         offset = Mathf.FloorToInt(TrueRandom.Range(0, 5));
@@ -56,7 +65,8 @@ public class EnemySpawner : MonoBehaviour
         if (spawnTime > spawnTimer && (LevelManager.levelNum != -1 || Tutorial.phase == 1) && (LevelManager.levelNum == -1 || enemiesSpawned < LevelManager.enemyCounts[LevelManager.levelNum - 1]))
         {
             ++enemiesSpawned;
-            ProgressBar.progress = ((float)enemiesSpawned)/LevelManager.enemyCounts[LevelManager.levelNum - 1];
+            if (LevelManager.levelNum != -1)
+                ProgressBar.progress = ((float)enemiesSpawned)/LevelManager.enemyCounts[LevelManager.levelNum - 1];
             // print("Progress: " + ProgressBar.progress);
             if (LevelManager.levelNum != -1 && enemiesSpawned == LevelManager.enemyCounts[LevelManager.levelNum - 1]) doneSpawning = true;
             GameObject[] currentEnemies = GameObject.FindGameObjectsWithTag("Enemy");
