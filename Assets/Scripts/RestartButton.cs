@@ -12,6 +12,7 @@ public class RestartButton : MonoBehaviour
 
     public void Restart()
     {
+        PlayMusic.Click();
         PlayerPrefs.DeleteAll();
         SceneManager.LoadScene(1);
     }

@@ -155,6 +155,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0711e66875ddcff4a9abd433a66667d0, type: 3}
   - {fileID: 8300000, guid: ccb8c23ea7dd8d5499defd5ef035d896, type: 3}
   - {fileID: 8300000, guid: feb327761436729489c4590186827cd3, type: 3}
+  clickEffect: {fileID: 8300000, guid: 8659abe6c056abe4a9c7f3b83dafe0a7, type: 3}
+  explosionEffect: {fileID: 8300000, guid: d6b42ee0c837b3344b46d1cb191f59cb, type: 3}
+  enemyExplosionEffect: {fileID: 8300000, guid: a972f9ac3cef9a6469cd248238462a27, type: 3}
+  lifeLossEffect: {fileID: 8300000, guid: 4bddb58524570ce4e9b3f15dc842c677, type: 3}
 --- !u!82 &373194371
 AudioSource:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -7,6 +8,11 @@ public class PlayMusic : MonoBehaviour
 {
     AudioSource player;
     public AudioClip[] tracks;
+    public AudioClip clickEffect;
+    public AudioClip explosionEffect;
+    public AudioClip enemyExplosionEffect;
+    public AudioClip lifeLossEffect;
+    static List<AudioClip> audioClips;
     static float fadeTime = 2;
     static int currentTrack = 0;
     static int nextTrack;
@@ -24,6 +30,13 @@ public class PlayMusic : MonoBehaviour
         player = GetComponent<AudioSource>();
         player.PlayOneShot(tracks[0]);
         DontDestroyOnLoad(gameObject);
+        audioClips = new()
+        {
+            clickEffect,
+            explosionEffect,
+            enemyExplosionEffect,
+            lifeLossEffect
+        };
     }
 
     // Update is called once per frame
@@ -93,5 +106,26 @@ public class PlayMusic : MonoBehaviour
     {
         nextTrack = track;
         fadeTimer = fadeTime;
+    }
+
+    public static void LoseLife()
+    {
+        AudioSource.PlayClipAtPoint(audioClips[3], Vector3.zero);
+    }
+
+    public static void Explosion()
+    {
+        AudioSource.PlayClipAtPoint(audioClips[1], Vector3.zero);
+    }
+
+    public static void EnemyExplosion()
+    {
+        AudioSource.PlayClipAtPoint(audioClips[2], Vector3.zero);
+    }
+
+    public static void Click()
+    {
+        print("clicked");
+        AudioSource.PlayClipAtPoint(audioClips[0], Vector3.zero);
     }
 }

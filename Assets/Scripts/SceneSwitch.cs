@@ -5,6 +5,7 @@ public class SceneSwitch : MonoBehaviour
 {
     public void StartGame()
     {
+        PlayMusic.Click();
         if (LevelManager.LevelsUnlocked == 1)
             SceneManager.LoadScene(1);
         else
@@ -12,6 +13,7 @@ public class SceneSwitch : MonoBehaviour
     }
     public void DoSceneSwitch(int sceneIndex)
     {
+        PlayMusic.Click();
         SceneManager.LoadScene(sceneIndex);
     }
 }

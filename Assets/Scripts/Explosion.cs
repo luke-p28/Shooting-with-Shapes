@@ -19,6 +19,7 @@ public class Explosion : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        PlayMusic.Explosion();
         cameraShaker = GameObject.Find("CinemachineCamera").GetComponent<CinemachineBasicMultiChannelPerlin>();
         shakeMagnitude = 10 - ((Vector2)transform.position).magnitude * 0.5f;
         targetScale = transform.localScale;

@@ -20,6 +20,7 @@ public class LevelSelectButton : MonoBehaviour
 
     public void GoToLevel()
     {
+        PlayMusic.Click();
         LevelManager.levelNum = levelNum;
         SceneManager.LoadScene(3);
     }

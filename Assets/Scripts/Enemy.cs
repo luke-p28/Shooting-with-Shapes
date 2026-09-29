@@ -105,9 +105,17 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    protected void EnemyKilled()
+    protected void EnemyKilled(bool losingLife = false)
     {
         if (gameObject) Destroy(gameObject);
+        if (!losingLife)
+        {
+            PlayMusic.EnemyExplosion();
+        }
+        else
+        {
+            PlayMusic.LoseLife();
+        }
         // ++enemiesKilled;
         if(EnemySpawner.doneSpawning && GameObject.FindGameObjectsWithTag("Enemy").Length == 1)
         {
