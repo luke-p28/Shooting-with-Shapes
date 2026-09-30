@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayMusic : MonoBehaviour
 {
-    AudioSource player;
+    static AudioSource player;
     public AudioClip[] tracks;
     public AudioClip clickEffect;
     public AudioClip explosionEffect;
@@ -110,22 +110,22 @@ public class PlayMusic : MonoBehaviour
 
     public static void LoseLife()
     {
-        AudioSource.PlayClipAtPoint(audioClips[3], Vector3.zero);
+        player.PlayOneShot(audioClips[3]);
     }
 
     public static void Explosion()
     {
-        AudioSource.PlayClipAtPoint(audioClips[1], Vector3.zero);
+        player.PlayOneShot(audioClips[1]);
     }
 
     public static void EnemyExplosion()
     {
-        AudioSource.PlayClipAtPoint(audioClips[2], Vector3.zero);
+        player.PlayOneShot(audioClips[2]);
     }
 
     public static void Click()
     {
         print("clicked");
-        AudioSource.PlayClipAtPoint(audioClips[0], Vector3.zero);
+        player.PlayOneShot(audioClips[0]);
     }
 }

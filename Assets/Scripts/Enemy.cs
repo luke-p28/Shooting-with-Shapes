@@ -1,3 +1,4 @@
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using Random = System.Random;
@@ -5,6 +6,8 @@ using TrueRandom = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
 {
+    public GameObject deathParticles;
+    public GameObject hitParticles;
     internal float movementSpeed;
     internal float strafeSpeed;
     internal bool invincible = true;
@@ -99,7 +102,8 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Stage"))
         {
-            EnemyKilled();
+            EnemyKilled(true);
+            ScreenFlasher.Flash();
             print("enemy hit: " + gameObject.name);
             for(int i = 0; i < livesLost(); ++i){LivesManager.DecrementLives();}
         }
@@ -111,10 +115,12 @@ public class Enemy : MonoBehaviour
         if (!losingLife)
         {
             PlayMusic.EnemyExplosion();
+            Instantiate(deathParticles, transform.position, quaternion.identity);
         }
         else
         {
             PlayMusic.LoseLife();
+            Instantiate(hitParticles, transform.position, transform.rotation);
         }
         // ++enemiesKilled;
         if(EnemySpawner.doneSpawning && GameObject.FindGameObjectsWithTag("Enemy").Length == 1)

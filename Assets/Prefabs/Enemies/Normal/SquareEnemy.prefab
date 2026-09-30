@@ -103,6 +103,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 067dc78ad0095104a8f8ef5a430c65a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathParticles: {fileID: 8040428118082994935, guid: 098e04c37d93e3a40b7be63b84b945da, type: 3}
+  hitParticles: {fileID: 8040428118082994935, guid: e5bfddabd0e6f3944905fc28d6880159, type: 3}
+  randomStart: 1
   shapeType: 0
   startingDistance: 8
 --- !u!50 &1011646107442270473

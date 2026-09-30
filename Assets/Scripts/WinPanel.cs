@@ -25,6 +25,7 @@ public class WinPanel : MonoBehaviour
     {
         LivesManager.inGame = false;
         LevelManager.WinRate *= 2.0f/3;
+        ScreenFlasher.flashTimer = 0;
         // print("winning");
         if (updateLevel){
             winObj.SetActive(true);

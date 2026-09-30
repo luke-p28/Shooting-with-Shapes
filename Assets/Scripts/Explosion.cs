@@ -1,10 +1,10 @@
+using System.Collections;
 using Unity.Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class Explosion : MonoBehaviour
 {
-    CinemachineBasicMultiChannelPerlin cameraShaker;
     Vector3 targetScale;
     Vector3 targetProportions;
     public GameObject preview;
@@ -20,12 +20,12 @@ public class Explosion : MonoBehaviour
     void Start()
     {
         PlayMusic.Explosion();
-        cameraShaker = GameObject.Find("CinemachineCamera").GetComponent<CinemachineBasicMultiChannelPerlin>();
         shakeMagnitude = 10 - ((Vector2)transform.position).magnitude * 0.5f;
         targetScale = transform.localScale;
         targetProportions = targetScale.normalized;
         transform.localScale = targetProportions * 0.01f;
         thisRenderer = GetComponent<SpriteRenderer>();
+        Camera.main.GetComponent<CameraShake>().StartCameraShake(shakeMagnitude, shakeTime);
     }
 
     // Update is called once per frame
@@ -36,11 +36,7 @@ public class Explosion : MonoBehaviour
         {
             if (!gameObject.GetComponent<Renderer>().enabled) {
                 Destroy(gameObject);
-                cameraShaker.AmplitudeGain = 0;
             }
-        } else
-        {
-            cameraShaker.AmplitudeGain = shakeMagnitude - shakeMagnitude * (2*explosionTime/shakeTime-1) * (2*explosionTime/shakeTime-1);
         }
         if (transform.localScale.magnitude < targetScale.magnitude)
         {
