@@ -34,13 +34,14 @@ public class Tutorial : MonoBehaviour
         {
             phase = 1;
         }
+        if (phase == 6 && Input.GetButtonDown("Pause")) phase = 7;
         if(objectsPhase != phase)
         {
             if (phaseExclusives[objectsPhase])
                 phaseExclusives[objectsPhase].SetActive(false);
             objectsPhase = phase;
             Invoke(nameof(EnablePhaseObjects), 0.5f);
-            if (objectsPhase == 6)
+            if (objectsPhase == 7)
                 Invoke(nameof(ReturnToMenu), 2.5f);
         }
     }
