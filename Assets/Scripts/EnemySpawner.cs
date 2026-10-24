@@ -14,7 +14,6 @@ public class EnemySpawner : MonoBehaviour
     static int offset;
     int enemiesSpawned;
     public static bool doneSpawning;
-    // Random random;
     static Random shapeTypeRandom;
     static Random enemyTypeRandom;
     [Serializable]
@@ -48,13 +47,10 @@ public class EnemySpawner : MonoBehaviour
         BossEnemy.enemies = enemies[3];
         offset = Mathf.FloorToInt(TrueRandom.Range(0, 5));
         shapeTypeRandom = new(LevelManager.levelNum+1);
-        // random = new(LevelManager.levelNum);
         Enemy.random = new(LevelManager.levelNum+2);
         Enemy.speedRandom = new(LevelManager.levelNum+3);
         Enemy.offset = TrueRandom.value * 360;
         Enemy.isFirst = true;
-        // Explosion.enemyKilled = false;
-        // Enemy.enemiesKilled = 0;
         enemyTypeRandom = new(LevelManager.levelNum+4);
     }
 
@@ -67,7 +63,6 @@ public class EnemySpawner : MonoBehaviour
             ++enemiesSpawned;
             if (LevelManager.levelNum != -1)
                 ProgressBar.progress = ((float)enemiesSpawned)/LevelManager.enemyCounts[LevelManager.levelNum - 1];
-            // print("Progress: " + ProgressBar.progress);
             if (LevelManager.levelNum != -1 && enemiesSpawned == LevelManager.enemyCounts[LevelManager.levelNum - 1]) doneSpawning = true;
             GameObject[] currentEnemies = GameObject.FindGameObjectsWithTag("Enemy");
             if (currentEnemies.Length < enemyLimit)
@@ -80,21 +75,6 @@ public class EnemySpawner : MonoBehaviour
                     int enemyIndex = LevelManager.GetRandomEnemyIndex(enemyTypeRandom);
                     Instantiate(enemies[enemyIndex][(int)GetNextEnemyType()]);
                 }
-                // GetCurrentShapes(out var inPlay, out var outOfPlay);
-                // if(inPlay.Count == 0 && Explosion.enemyKilled)
-                // {
-                //     outOfPlay.Remove(Explosion.lastKilledEnemy);
-                //     inPlay.Add(Explosion.lastKilledEnemy);
-                // }
-                // if(inPlay.Count > 0 && outOfPlay.Count > 0)
-                // {
-                //     if(random.NextDouble() <= LevelManager.dupeChance[LevelManager.levelNum - 1])
-                //         Instantiate(enemies[(int)inPlay[TrueRandom.Range(0, inPlay.Count - 1)]]);
-                //     else
-                //         Instantiate(enemies[(int)outOfPlay[TrueRandom.Range(0, outOfPlay.Count - 1)]]);
-                // }
-                // else
-                //     Instantiate(enemies[TrueRandom.Range(0, enemies.Length)]);
             }
             spawnTime -= spawnTimer;
         }
@@ -126,8 +106,6 @@ public class EnemySpawner : MonoBehaviour
         {
             shapesInPlay.Add(false);
         }
-        // print("shapesinplay length: " + shapesInPlay.Count);
-        // print("enemies length: " + enemies.Length);
         GameObject[] currentEnemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach(GameObject enemy in currentEnemies)
         {

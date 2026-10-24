@@ -28,12 +28,8 @@ public class Ammo : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D collision)
     {
-        // print("Last position:");
-        // print(lastPosition);
-        // print("colderded");
         if (collision.gameObject.CompareTag("Player"))
         {
-            // print("hasAmmo: " + hasAmmo + ", pickingUp: " + PlayerMovement.pickingUp);
             if (PlayerMovement.pickingUp && (!hasAmmo || collectedShapeType != shapeType))
             {
                 if (hasAmmo)
@@ -45,18 +41,11 @@ public class Ammo : MonoBehaviour
                     Tutorial.phase = 4;
                 lastShapeType = shapeType;
                 lastPosition = transform.position;
-                // print("colledcted");
                 collectible = false;
                 hasAmmo = true;
                 collectedShapeObject = gameObject;
                 collectedShapeType = shapeType;
-                // print("now has ammo: " + hasAmmo);
             }
         }
-    }
-
-    void OnTriggerExit2D(Collider2D collision)
-    {
-        // print("exxiteed");
     }
 }

@@ -10,8 +10,6 @@ public class CutsceneAppear: CutsceneMaker.CutsceneAction
     float time;
     public override void Setup()
     {
-        // foreach(GameObject obj in objsToAppear)
-        //     obj.SetActive(!isAppearing);
         foreach(GameObject obj in objsToAppear)
             obj.SetActive(isAppearing);
     }

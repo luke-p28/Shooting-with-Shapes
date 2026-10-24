@@ -10,11 +10,9 @@ public class LevelManager
         set
         {
             PlayerPrefs.SetInt("LevelUnlocked", value);
-            //Debug.Log("pref to " + value);
         }
         get
         {
-            //Debug.Log("pref from " + PlayerPrefs.GetInt("LevelUnlocked", 1));
             return PlayerPrefs.GetInt("LevelUnlocked", 1);
         }
     }
@@ -56,33 +54,6 @@ public class LevelManager
         35,
         38,
     };
-//     public static float[] dupeChance =
-//     {
-//         0.3f,
-//         0.3f,
-//         0.3f,
-//         0.4f,
-//         0.4f,
-//         0.4f,
-//         0.4f,
-//         0.4f,
-//         0.4f,
-//         0.4f,
-//         0.4f,
-//         0.45f,
-//         0.45f,
-//         0.45f,
-//         0.45f,
-//         0.45f,
-//         0.45f,
-//         0.45f,
-//         0.45f,
-//         0.5f,
-//         0.35f,
-//         0.5f,
-//         0.5f,
-//         0.5f,
-// };
 
     readonly static float[] speedMins =
     {

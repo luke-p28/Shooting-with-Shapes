@@ -34,7 +34,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (canMove)
         {
-            //transform.Rotate(0, 0, 1f);
             Vector2 targetDirection = new(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
             if (targetDirection == Vector2.zero)
                 targetDirection = transform.forward;
@@ -44,13 +43,7 @@ public class PlayerMovement : MonoBehaviour
             if (Vector3.Angle(currentDirection, targetDirection) > 90.1f)
                 targetDirection = Quaternion.Euler(0, 0, 90) * currentDirection;
             Quaternion neededRotation = Quaternion.FromToRotation(currentDirection, targetDirection);
-            // print(neededRotation);
-            // print(targetDirection);
-            // print(currentDirection);
-            // print("e");
-            // print(neededRotation * currentDirection);
             transform.Rotate(Quaternion.SlerpUnclamped(Quaternion.identity, neededRotation.normalized, 0.5f).eulerAngles);
-            //transform.Rotate(0, 0, -1f);
         }
     }
 
@@ -62,21 +55,12 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        // print(collision.otherCollider.gameObject.name);
-    }
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        // print(collision.gameObject.name);
-    }
     void OnTriggerExit2D(Collider2D collision)
     {
         if(collision.gameObject.CompareTag("Stage"))
         {
             LivesManager.DecrementLives();
             gameObject.transform.position = Vector3.back;
-            // print("left platform");
         }
         
     }

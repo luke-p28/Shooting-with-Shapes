@@ -41,7 +41,6 @@ public class Enemy : MonoBehaviour
     void RandomizeStart()
     {
         float nextDouble = (float)random.NextDouble();
-        // print("Next dobule: " + nextDouble);
         float angle;
         if (LevelManager.levelNum == -1)
         {
@@ -49,31 +48,23 @@ public class Enemy : MonoBehaviour
         } else
         {
             angle =  (nextDouble * 360 + offset) % 360;
-            // print("offset:" + offset);
-            // print("angl: " + angle);
             if (!isFirst){
                 float difference = angle - lastAngle;
                 if (Mathf.Abs(difference) < 120)
                 {
-                    // print("smol angl");
                     angle = lastAngle + Mathf.Clamp(Mathf.Abs(difference), 0, 30) * Mathf.Sign(difference);
                 } else if(Mathf.Abs(difference) > 240)
                 {
-                    // print("smol big angl");
-                    // print("diff: " + difference);
                     angle = lastAngle + Mathf.Clamp(Mathf.Abs(difference), 330, 360) * Mathf.Sign(difference);
                 } else
                 {
-                    // print("biig angl");
                     angle = lastAngle + Mathf.Clamp(Mathf.Abs(difference), 135, 225) * Mathf.Sign(difference);
                 }
             } else isFirst = false;
         }
         transform.position = Quaternion.Euler(0, 0, angle) * Vector2.up * startingDistance;
-        // print("creating with offset: " + offset);
         transform.position += TrueRandom.value * 10 * Vector3.forward;
         lastAngle = angle;
-        // print("Final angle: " + lastAngle);
 
         if (LevelManager.levelNum == -1)
             movementSpeed = 0.3f;
@@ -123,7 +114,6 @@ public class Enemy : MonoBehaviour
             Instantiate(hitParticles, transform.position, transform.rotation);
         }
         GameObject.FindWithTag("Player").GetComponent<PlayerMovement>().Invoke(nameof(PlayerMovement.Win), 1);
-        // ++enemiesKilled;
     }
 
     public virtual void ExplosionHit(ShapesManager.ShapeType explosionType)

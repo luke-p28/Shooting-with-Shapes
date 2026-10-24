@@ -15,15 +15,10 @@ public class Launcher : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
-        // print("colidered with: " + collision.gameObject.name);
-        // print("has ammo: " + Ammo.hasAmmo);
-        // print("shape type: " + Ammo.collectedShapeType);
         if (collision.gameObject.CompareTag("Player") && Ammo.hasAmmo && Ammo.collectedShapeType == shapeType)
         {
-            // print(Ammo.collectedShapeObject.name);
             Destroy(Ammo.collectedShapeObject);
             Instantiate(ShapesManager.ammosStatic[(int)Ammo.lastShapeType], Ammo.lastPosition, Quaternion.identity);
-            // print(Ammo.collectedShapeObject.name);
             Ammo.hasAmmo = false;
             Instantiate(ShapesManager.previewsStatic[(int)Ammo.collectedShapeType]);
             if (LevelManager.levelNum == -1 && Tutorial.phase == 4)

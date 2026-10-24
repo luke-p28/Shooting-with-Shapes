@@ -28,30 +28,5 @@ public class ShapesManager : MonoBehaviour
         Ammo.hasAmmo = false;
         Ammo.collectedShapeObject = null;
         Ammo.lastPosition = Vector3.zero;
-        // GameObject[] ammosInScene = GameObject.FindGameObjectsWithTag("Ammo");
-        // SortedList objects = new();
-        // SortedList newPositions = new();
-        // for (int i = 0; i < ammosInScene.Length; i++)
-        // {
-        //     objects.Add(ammosInScene[i].name,ammosInScene[i]);
-        // }
-        // // if (LevelManager.levelNum == -1)
-        // // {
-        // //     for (int i = 0; i < ammosInScene.Length; i++)
-        // //     {
-        // //         newPositions.Add(i,((GameObject)objects.GetByIndex(i)).transform.position);
-        // //     }
-        // // } else {
-        // for (int i = 0; i < ammosInScene.Length; i++)
-        // {
-        //     newPositions.Add(random.NextDouble(),((GameObject)objects.GetByIndex(i)).transform.position);
-        // }
-        // // }
-        // for (int i = 0; i < ammosInScene.Length; i++)
-        // {
-        //     ((GameObject)objects.GetByIndex(i)).transform.position = (Vector3)newPositions.GetByIndex(i);
-        // }
-        // // print("Sorted positions: ");
-        // // foreach(DictionaryEntry thing in positions){print((Vector3)thing.Value);}
     }
 }

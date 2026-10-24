@@ -14,8 +14,7 @@ public class Explosion : MonoBehaviour
     public ShapesManager.ShapeType shape;
     const float shakeTime = 0.3f;
     float shakeMagnitude;
-    // public static ShapesManager.ShapeType lastKilledEnemy;
-    // public static bool enemyKilled;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -40,12 +39,10 @@ public class Explosion : MonoBehaviour
         }
         if (transform.localScale.magnitude < targetScale.magnitude)
         {
-            //print("growing");
             transform.localScale = explosionTime / explosionDuration * (explosionTime / explosionDuration) * targetScale.magnitude * targetProportions;
         }
         else
         {
-            //print("done growing");
             if (preview)
                 Destroy(preview);
             if (thisRenderer.color.a > Time.deltaTime)
