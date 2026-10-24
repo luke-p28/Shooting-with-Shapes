@@ -14,6 +14,6 @@ public class RestartButton : MonoBehaviour
     {
         PlayMusic.Click();
         PlayerPrefs.DeleteAll();
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("title scren");
     }
 }

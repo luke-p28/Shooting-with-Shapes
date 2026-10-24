@@ -122,12 +122,8 @@ public class Enemy : MonoBehaviour
             PlayMusic.LoseLife();
             Instantiate(hitParticles, transform.position, transform.rotation);
         }
+        GameObject.FindWithTag("Player").GetComponent<PlayerMovement>().Invoke(nameof(PlayerMovement.Win), 1);
         // ++enemiesKilled;
-        if(EnemySpawner.doneSpawning && GameObject.FindGameObjectsWithTag("Enemy").Length == 1)
-        {
-            print("should win");
-            GameObject.FindWithTag("Player").GetComponent<PlayerMovement>().Invoke(nameof(PlayerMovement.Win), 1);
-        }
     }
 
     public virtual void ExplosionHit(ShapesManager.ShapeType explosionType)
@@ -140,5 +136,15 @@ public class Enemy : MonoBehaviour
             } 
             else EnemyKilled();
         }
+    }
+
+    protected void Spawn(GameObject prefab, float movementSpeedChange, float strafeSpeedChange)
+    {
+        Enemy enemy = Instantiate(prefab, transform.position, transform.rotation).GetComponent<Enemy>();
+        enemy.randomStart = false;
+        enemy.transform.position += TrueRandom.value * 10 * Vector3.forward;
+        enemy.movementSpeed = movementSpeed + movementSpeedChange;
+        enemy.strafeSpeed = strafeSpeed + strafeSpeedChange;
+        enemy.invincibleTime = 0.5f;
     }
 }

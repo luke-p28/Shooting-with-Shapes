@@ -25,16 +25,8 @@ public class BossEnemy : Enemy
         if (explosionType == shapeType)
         {
             Destroy(gameObject);
-            Enemy leftEnemy = Instantiate(enemies[(int)EnemySpawner.GetNextEnemyType()], transform.position, transform.rotation).GetComponent<Enemy>();
-            leftEnemy.randomStart = false;
-            leftEnemy.transform.position += Random.value * 10 * Vector3.forward;
-            leftEnemy.movementSpeed = movementSpeed + 0.1f;
-            leftEnemy.strafeSpeed = strafeSpeed + 0.5f;
-            Enemy rightEnemy = Instantiate(enemies[(int)EnemySpawner.GetNextEnemyType()], transform.position, transform.rotation).GetComponent<Enemy>();
-            rightEnemy.randomStart = false;
-            rightEnemy.transform.position += Random.value * 10 * Vector3.forward;
-            rightEnemy.movementSpeed = movementSpeed + 0.1f;
-            rightEnemy.strafeSpeed = strafeSpeed - 0.5f;
+            Spawn(enemies[(int)EnemySpawner.GetNextEnemyType()], 0.1f, 1);
+            Spawn(enemies[(int)EnemySpawner.GetNextEnemyType()], 0.1f, -1);
         }
     }
 }

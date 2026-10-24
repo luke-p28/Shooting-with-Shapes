@@ -22,6 +22,6 @@ public class LevelSelectButton : MonoBehaviour
     {
         PlayMusic.Click();
         LevelManager.levelNum = levelNum;
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene("gam");
     }
 }

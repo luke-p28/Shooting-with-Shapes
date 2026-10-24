@@ -22,9 +22,9 @@ public class Tutorial : MonoBehaviour
             phaseExclusives[objectsPhase].SetActive(true);
     }
 
-    void LevelSelect()
+    void ReturnToMenu()
     {
-        SceneManager.LoadScene(6);
+        SceneManager.LoadScene("enemy reference");
     }
 
     void Update()
@@ -41,7 +41,7 @@ public class Tutorial : MonoBehaviour
             objectsPhase = phase;
             Invoke(nameof(EnablePhaseObjects), 0.5f);
             if (objectsPhase == 6)
-                Invoke(nameof(LevelSelect), 2.5f);
+                Invoke(nameof(ReturnToMenu), 2.5f);
         }
     }
 }

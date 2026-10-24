@@ -24,19 +24,21 @@ public class PlayMusic : MonoBehaviour
     void Start()
     {
         if (!firstPlayer) Destroy(gameObject);
-        else firstPlayer = false;
-        loopTimer = loopTime;
-        fadeTimer = -fadeTime;
-        player = GetComponent<AudioSource>();
-        player.PlayOneShot(tracks[0]);
-        DontDestroyOnLoad(gameObject);
-        audioClips = new()
-        {
-            clickEffect,
-            explosionEffect,
-            enemyExplosionEffect,
-            lifeLossEffect
-        };
+        else {
+            firstPlayer = false;
+            loopTimer = loopTime;
+            fadeTimer = -fadeTime;
+            player = GetComponent<AudioSource>();
+            player.PlayOneShot(tracks[0]);
+            DontDestroyOnLoad(gameObject);
+            audioClips = new()
+            {
+                clickEffect,
+                explosionEffect,
+                enemyExplosionEffect,
+                lifeLossEffect
+            };
+        }
     }
 
     // Update is called once per frame

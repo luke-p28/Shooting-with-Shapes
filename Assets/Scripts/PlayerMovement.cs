@@ -56,8 +56,10 @@ public class PlayerMovement : MonoBehaviour
 
     public void Win()
     {
-        print("winning");
-        WinPanel.Win(true);
+        if(EnemySpawner.doneSpawning && GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
+        {
+            WinPanel.Win(true);
+        }
     }
 
     void OnCollisionEnter2D(Collision2D collision)

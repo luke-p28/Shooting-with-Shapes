@@ -43,7 +43,7 @@ public class WinPanel : MonoBehaviour
         ++LevelManager.levelNum;
         Time.timeScale = 1;
         if (LevelManager.levelNum == LevelManager.enemyCounts.Length + 1)
-            SceneManager.LoadScene(4);
+            SceneManager.LoadScene("ending cutscene");
         else
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
@@ -51,18 +51,18 @@ public class WinPanel : MonoBehaviour
     public void LevelSelect()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene("level select");
     }
 
     public void Restart()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene("gam");
     }
 
     public void EnemyReference()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene(6);
+        SceneManager.LoadScene("enemy reference");
     }
 }

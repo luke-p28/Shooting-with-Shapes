@@ -25,18 +25,8 @@ public class SpawnerEnemy : Enemy
         if (explosionType == shapeType)
         {
             Destroy(gameObject);
-            Enemy leftEnemy = Instantiate(objToSpawn, transform.position, transform.rotation).GetComponent<Enemy>();
-            leftEnemy.randomStart = false;
-            leftEnemy.transform.position += Random.value * 10 * Vector3.forward;
-            leftEnemy.movementSpeed = movementSpeed + 0.2f;
-            leftEnemy.strafeSpeed = strafeSpeed + 1;
-            leftEnemy.invincibleTime = 0.5f;
-            Enemy rightEnemy = Instantiate(objToSpawn, transform.position, transform.rotation).GetComponent<Enemy>();
-            rightEnemy.randomStart = false;
-            rightEnemy.transform.position += Random.value * 10 * Vector3.forward;
-            rightEnemy.movementSpeed = movementSpeed + 0.2f;
-            rightEnemy.strafeSpeed = strafeSpeed - 1;
-            rightEnemy.invincibleTime = 0.5f;
+            Spawn(objToSpawn, 0.2f, 1);
+            Spawn(objToSpawn, 0.2f, -1);
         }
     }
 }
