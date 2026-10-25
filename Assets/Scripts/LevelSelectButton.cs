@@ -10,7 +10,6 @@ public class LevelSelectButton : MonoBehaviour
     {
         if (levelNum > LevelManager.LevelsUnlocked)
         {
-            // print("darkening");
             var renderer = GetComponent<Image>();
             Color.RGBToHSV(renderer.color, out var h, out var s, out var v);
             renderer.color = Color.HSVToRGB(h, s, v - 0.3f);

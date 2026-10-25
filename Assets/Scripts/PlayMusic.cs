@@ -81,7 +81,6 @@ public class PlayMusic : MonoBehaviour
             }
         } else
         {
-            // print(SceneManager.GetActiveScene().buildIndex);
             if (SceneManager.GetActiveScene().buildIndex == 3)
             {
                 if (currentTrack != 1 && currentTrack != 2 && currentTrack != 3)
